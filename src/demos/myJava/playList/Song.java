@@ -1,5 +1,8 @@
 package demos.myJava.playList;
 
+import java.util.LinkedList;
+import java.util.ListIterator;
+
 public class Song {
 	private String name;
 	private float duration;
@@ -20,5 +23,11 @@ public class Song {
 		this.name = name;
 		this.duration = duration;
 	}
-	
+	public Song() {
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public String toString() {
+		return "Song [name=" + name + ", duration=" + duration + "]";
+	}
 }
