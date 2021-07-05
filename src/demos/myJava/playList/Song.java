@@ -1,8 +1,5 @@
 package demos.myJava.playList;
 
-import java.util.LinkedList;
-import java.util.ListIterator;
-
 public class Song {
 	private String name;
 	private float duration;

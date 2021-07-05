@@ -65,91 +65,96 @@ public class PlayList {
 	}
 	public static void play(LinkedList<Song> playList) {
 		Scanner sc = new Scanner(System.in);
-		boolean quit = false, fwd = true;
-		ListIterator<Song> litr = playList.listIterator();
-		if(playList.size()==0) {
-			System.out.println("Playlist is Empty....");
-			return;
-		}
-		else {
-			System.out.println("Now Playing....  "+litr.next().getName());
-			printMenu();
-		}
-		while(!quit) {
-			int action = sc.nextInt();
-			sc.nextLine();
-			
-			switch(action){
-			
-				case 0:
-						System.out.println("PlayList Completed...");
-						quit = true;
-						break;
-				case 1:
-						if(!fwd) {
-							if(litr.hasNext()) {
-								litr.next();
-								fwd=true;
+		try {
+			boolean quit = false, fwd = true;
+			ListIterator<Song> litr = playList.listIterator();
+			if(playList.size()==0) {
+				System.out.println("Playlist is Empty....");
+				return;
+			}
+			else {
+				System.out.println("Now Playing....  "+litr.next().getName());
+				printMenu();
+			}
+			while(!quit) {
+				int action = sc.nextInt();
+				sc.nextLine();
+				
+				switch(action){
+				
+					case 0:
+							System.out.println("PlayList Completed...");
+							quit = true;
+							break;
+					case 1:
+							if(!fwd) {
+								if(litr.hasNext()) {
+									litr.next();
+									fwd=true;
+								}
 							}
-						}
-						if(litr.hasNext()) 
-							System.out.println("Now Playing "+ litr.next().toString());
-						else {
-							System.out.println("We are in the End of PlayList ");
-							fwd = false;
-						}
-						break;
-				case 2:
-						if(fwd) {
-							if(litr.hasPrevious()) {
-								litr.previous();
-								fwd=false;
-							}
-						}
-						if(litr.hasPrevious()) 
-							System.out.println("Now Playing "+ litr.previous().toString());
-						else {
-							System.out.println("We are in the begining of PlayList ");
-							fwd=true;
-						}
-						break;
-				case 3:
-						if(fwd) {
-							if(litr.hasPrevious()) {
-								System.out.println("Now Playing "+ litr.previous().toString());
+							if(litr.hasNext()) 
+								System.out.println("Now Playing "+ litr.next().toString());
+							else {
+								System.out.println("We are in the End of PlayList ");
 								fwd = false;
 							}
-							else
+							break;
+					case 2:
+							if(fwd) {
+								if(litr.hasPrevious()) {
+									litr.previous();
+									fwd=false;
+								}
+							}
+							if(litr.hasPrevious()) 
+								System.out.println("Now Playing "+ litr.previous().toString());
+							else {
 								System.out.println("We are in the begining of PlayList ");
-						}
-						else {
-							if(litr.hasNext()) {
-								System.out.println("Now Playing "+ litr.next().toString());
 								fwd=true;
 							}
-							else 
-								System.out.println("We are in the End of PlayList ");
-						}
-							
-						break;
-				case 4:
-						printList(playList);
-						break;
-				case 5:
-						printMenu();
-						break;
-				case 6:
-						if(playList.size()>0) {
-							litr.remove();
-							if(litr.hasNext())
-								System.out.println("Now Playiing "+litr.next().toString());
-							else if(litr.hasPrevious())
-								System.out.println("Now Playiing "+litr.previous().toString());
-							else
-								System.out.println("PlayList is Empty");
-						}
-						break;
+							break;
+					case 3:
+							if(fwd) {
+								if(litr.hasPrevious()) {
+									System.out.println("Now Playing "+ litr.previous().toString());
+									fwd = false;
+								}
+								else
+									System.out.println("We are in the begining of PlayList ");
+							}
+							else {
+								if(litr.hasNext()) {
+									System.out.println("Now Playing "+ litr.next().toString());
+									fwd=true;
+								}
+								else 
+									System.out.println("We are in the End of PlayList ");
+							}
+								
+							break;
+					case 4:
+							printList(playList);
+							break;
+					case 5:
+							printMenu();
+							break;
+					case 6:
+							if(playList.size()>0) {
+								litr.remove();
+								if(litr.hasNext())
+									System.out.println("Now Playiing "+litr.next().toString());
+								else if(litr.hasPrevious())
+									System.out.println("Now Playiing "+litr.previous().toString());
+								else
+									System.out.println("PlayList is Empty");
+							}
+							break;
+				}
 			}
+		}
+		finally {
+			sc.close();
 		}
 	}
 	
